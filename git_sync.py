@@ -12,14 +12,14 @@ default_args = {
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,
-    'retry_delay': timedelta(seconds=20),
+    'retry_delay': timedelta(seconds=60),
 }
 
 dag = DAG(
     'git_sync',
     default_args=default_args,
     description='A simple tutorial DAG',
-    schedule_interval=timedelta(seconds=60),
+    schedule_interval=timedelta(seconds=180),
 )
 
 git_pull = BashOperator(
