@@ -23,16 +23,16 @@ for next_type in rocket_types:
     print(next_type)
     
     t1 = BashOperator(
-        task_id="get_data", 
-        bash_command="python3 /root/airflow/dags/spacex/load_launches.py -y {{ execution_date.year }} -r {{ params.rocket }} -o /var/data", 
+        task_id = "get_data_" + next_type, 
+        bash_command = "python3 /root/airflow/dags/spacex/load_launches.py -y {{ execution_date.year }} -r {{ params.rocket }} -o /var/data", 
         params = {"rocket": next_type },
         dag=dag
     )
     
     t2 = BashOperator(
-        task_id="print_data", 
-        bash_command="cat /var/data/year={{ execution_date.year }}/rocket={{ params.rocket }}/data.csv", 
-        params={"rocket": next_type}, # falcon1/falcon9/falconheavy
+        task_id = "print_data" + next_type, 
+        bash_command = "cat /var/data/year={{ execution_date.year }}/rocket={{ params.rocket }}/data.csv", 
+        params = {"rocket": next_type}, # falcon1/falcon9/falconheavy
         dag=dag
     )
     
