@@ -22,7 +22,7 @@ for next_type in rocket_types:
 
     t1 = BashOperator(
         task_id="get_data", 
-        bash_command=f"python3 /root/airflow/dags/spacex/load_launches.py -y {{{ execution_date.year }}} -r { next_type } -o /var/data", 
+        bash_command="python3 /root/airflow/dags/spacex/load_launches.py -y {{ execution_date.year }} -r {{ next_type }} -o /var/data", 
         dag=dag
     )
     
