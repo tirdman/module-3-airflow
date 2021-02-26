@@ -19,8 +19,6 @@ dag = DAG("spacex", default_args=default_args, schedule_interval="0 0 1 1 *")
 rocket_types = ('all', 'falcon1', 'falcon9', 'falconheavy')
 
 for next_type in rocket_types:
-
-    print(next_type)
     
     t1 = BashOperator(
         task_id = "get_data_" + next_type, 
